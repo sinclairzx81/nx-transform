@@ -80,10 +80,6 @@ app.directive('nxTransform', function (scene, viewer) {
 
                     scope.object.scale    = new THREE.Vector3(1, 1, 1)
 
-                    console.log(scope.object)
-
-                    scope.object.doubleSided = false
-
                     //-------------------------------------
                     // register destroy
                     //-------------------------------------
