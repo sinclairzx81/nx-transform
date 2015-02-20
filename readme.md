@@ -1,6 +1,6 @@
 ### nx-transform
 
-A binding between angularjs + threejs. Enabling a declarative 3D transformations in the browser.
+A binding between angularjs + threejs. Enabling declarative 3D layouts in the browser.
 
 ```html
 
