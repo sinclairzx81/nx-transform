@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js"></script>
+    
+    <script src="http://mrdoob.com/lab/javascript/threejs/css3d/three-css3d.min.js"></script>
+    
+    <script src="script/app.js"></script>
+    
+    <script>
+
+        app.controller('applicationCtrl', function ($scope, $interval) {
+
+            $scope.value0  = 0
+
+            $scope.value1  = 0
+
+            $interval(function () {
+
+                $scope.value0 += 0.1
+
+                $scope.value1 = Math.sin(($scope.value0 * 10) * Math.PI / 180) * 25
+
+            }, 1)
+        })
+
+    </script>
+
+</head>
+
+    <body ng-app="app">
+
+        <div ng-controller="applicationCtrl">
+
+            <nx-transform rotation="{z:{{value1}}}">
+
+                <nx-transform position="{y:-100}">
+
+                    <h1>nx-transform</h1>
+
+                </nx-transform>
+
+                <nx-transform position="{x:50, y:0}" rotation="{y:{{value0 * 5}}}">
+
+                    <img src="http://vojtajina.github.io/html5la/2012-05-11-brighton/images/AngularShieldLogo.png" />
+
+                </nx-transform>
+
+                <nx-transform position="{y:100}">
+
+                    <h3>angular + threejs + css</h3>
+
+                </nx-transform>
+
+            </nx-transform>
+
+        </div>
+
+    </body>
+
+</html>
