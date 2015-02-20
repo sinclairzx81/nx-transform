@@ -1,6 +1,6 @@
 ﻿angular.module('nxTransform', [])
 
-.factory('camera', function () {
+.factory('nxCamera', function () {
 
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
 
@@ -8,11 +8,11 @@
 
     return camera
 
-}).factory('scene', function () {
+}).factory('nxScene', function () {
 
     return new THREE.Scene()
 
-}).factory('renderer', function () {
+}).factory('nxRenderer', function () {
 
     var renderer = new THREE.CSS3DRenderer()
 
@@ -26,25 +26,30 @@
 
     return renderer
 
-}).factory('viewer', function (renderer, scene, camera) {
+}).factory('nxRuntime', function (nxRenderer, nxScene, nxCamera) {
+
+    window.addEventListener('resize', function () {
+
+        nxCamera.aspect = window.innerWidth / window.innerHeight
+
+        nxCamera.updateProjectionMatrix()
+
+        nxRenderer.setSize(window.innerWidth, window.innerHeight)
+
+    }, false);
 
     var animate = function () {
 
         requestAnimationFrame(animate)
 
-        renderer.render(scene, camera)
+        nxRenderer.render(nxScene, nxCamera)
     }
 
     animate()
 
-    return {
+    return {}
 
-        camera : camera,
-
-        scene  : scene
-    }
-
-}).directive('nxTransform', function (scene, viewer) {
+}).directive('nxTransform', function (nxRuntime, nxScene) {
 
     return {
 
@@ -62,7 +67,7 @@
                     // attach parent scope object
                     //-------------------------------------
 
-                    scope.parentObject  = scope.object || scene
+                    scope.parentObject  = scope.object || nxScene
 
                     //-------------------------------------
                     // shadow object in child scope
