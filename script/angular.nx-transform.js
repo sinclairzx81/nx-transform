@@ -1,20 +1,18 @@
-﻿var app = angular.module('app', [])
+﻿angular.module('nxTransform', [])
 
-app.factory('camera', function () {
+.factory('camera', function () {
 
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
 
     camera.position.set(0, 0, 600)
 
     return camera
-})
 
-app.factory('scene', function () {
+}).factory('scene', function () {
 
     return new THREE.Scene()
-})
 
-app.factory('renderer', function () {
+}).factory('renderer', function () {
 
     var renderer = new THREE.CSS3DRenderer()
 
@@ -27,9 +25,8 @@ app.factory('renderer', function () {
     document.body.appendChild(renderer.domElement)
 
     return renderer
-})
 
-app.factory('viewer', function (renderer, scene, camera) {
+}).factory('viewer', function (renderer, scene, camera) {
 
     var animate = function () {
 
@@ -46,9 +43,8 @@ app.factory('viewer', function (renderer, scene, camera) {
 
         scene  : scene
     }
-})
 
-app.directive('nxTransform', function (scene, viewer) {
+}).directive('nxTransform', function (scene, viewer) {
 
     return {
 
