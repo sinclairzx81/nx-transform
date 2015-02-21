@@ -14,13 +14,13 @@
 
 }).factory('nxRenderer', function () {
 
-    var renderer = new THREE.CSS3DRenderer()
+    var renderer                      = new THREE.CSS3DRenderer()
 
     renderer.setSize(window.innerWidth, window.innerHeight)
 
     renderer.domElement.style.position = 'absolute'
 
-    renderer.domElement.style.top = 0
+    renderer.domElement.style.top      = 0
 
     document.body.appendChild(renderer.domElement)
 
@@ -53,11 +53,11 @@
 
     return {
 
-        restrict   : 'E',
+        restrict: 'E',
 
-        scope      : true,
+        scope: true,
 
-        compile    : function (element, attributes) {
+        compile: function (element, attributes) {
 
             return {
 
@@ -67,13 +67,15 @@
                     // attach parent scope object
                     //-------------------------------------
 
-                    scope.parentObject  = scope.object || nxScene
+                    scope.parentObject = scope.object || nxScene
 
                     //-------------------------------------
                     // shadow object in child scope
                     //-------------------------------------
 
-                    scope.object          = new THREE.CSS3DObject(angular.element(element)[0])
+                    scope.element         = angular.element(element)
+
+                    scope.object          = new THREE.CSS3DObject(scope.element[0])
 
                     scope.object.position = new THREE.Vector3(0, 0, 0)
 
@@ -84,7 +86,7 @@
                     //-------------------------------------
                     // register destroy
                     //-------------------------------------
-                    
+
                     scope.$on('$destroy', function () {
 
                         scope.parentObject.remove(scope.object)
@@ -100,17 +102,22 @@
                     // observe state changes
                     //-------------------------------------
 
+                    attributes.$observe('class', function (value) {
+
+                        scope.element[0].className = value
+                    })
+
                     attributes.$observe('position', function (value) {
 
                         var position = scope.$eval(value)
 
                         if (position) {
 
-                            scope.object.position.set(position.x ? position.x : scope.object.position.x,
+                            scope.object.position.set(position.x != null ? position.x : scope.object.position.x,
 
-                                                      position.y ? position.y : scope.object.position.y,
+                                                      position.y != null ? position.y : scope.object.position.y,
 
-                                                      position.z ? position.z : scope.object.position.z)
+                                                      position.z != null ? position.z : scope.object.position.z)
                         }
                     })
 
@@ -120,11 +127,11 @@
 
                         if (rotation) {
 
-                            scope.object.rotation.set(rotation.x ? rotation.x * (Math.PI / 180.0) : scope.object.rotation.x,
+                            scope.object.rotation.set(rotation.x != null ? rotation.x * (Math.PI / 180.0) : scope.object.rotation.x,
 
-                                                      rotation.y ? rotation.y * (Math.PI / 180.0) : scope.object.rotation.y,
+                                                      rotation.y != null ? rotation.y * (Math.PI / 180.0) : scope.object.rotation.y,
 
-                                                      rotation.z ? rotation.z * (Math.PI / 180.0) : scope.object.rotation.z)
+                                                      rotation.z != null ? rotation.z * (Math.PI / 180.0) : scope.object.rotation.z)
                         }
                     })
 
@@ -134,11 +141,11 @@
 
                         if (scale) {
 
-                            scope.object.scale.set(scale.x ? scale.x : scope.object.scale.x,
+                            scope.object.scale.set(scale.x != null ? scale.x : scope.object.scale.x,
 
-                                                   scale.y ? scale.y : scope.object.scale.y,
+                                                   scale.y != null ? scale.y : scope.object.scale.y,
 
-                                                   scale.z ? scale.z : scope.object.scale.z)
+                                                   scale.z != null ? scale.z : scope.object.scale.z)
                         }
                     })
                 },
