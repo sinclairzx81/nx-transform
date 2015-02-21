@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>    
+<head>
     <script src="script/three.min.js"></script>
     <script src="script/three-css3d.min.js"></script>
     <script src="script/tween.min.js"></script>
@@ -10,113 +10,116 @@
     <style>
         body {
             overflow: hidden;
-            font-family:sans-serif;
+            font-family: sans-serif;
         }
+
         .menu-button {
-            float            : left; 
-            margin-right     : 10px; 
-            height           : 32px;
-            width            : 32px;
-            border           : 1px solid #000;
-            background-color : #FFF;
+            float: left;
+            margin-right: 10px;
+            height: 32px;
+            width: 32px;
+            border: 1px solid #000;
+            background-color: #FFF;
         }
+
         .cube-panel {
-            width:100px; 
-            height:200px; 
-            background-color:#333;
+            width: 100px;
+            height: 200px;
+            background-color: #333;
         }
+
         .side-content {
-            color:#fff;
-            width:200px;
+            color: #fff;
+            width: 200px;
         }
     </style>
 
     <script>
 
         var app = angular.module('app', ['nxScene'])
-        
-        app.controller('controller', function ($scope, nxAnimation, $interval) {
 
-            $scope.app      = 'app-start'
-            $scope.title    = 'title-closed'
-            $scope.menu     = 'menu-closed'
+        app.controller('controller', function ($scope, nxAnimation) {
+
+            $scope.app = 'app-start'
+            $scope.title = 'title-closed'
+            $scope.menu = 'menu-closed'
             $scope.content0 = 'content-closed'
             $scope.content1 = 'content-closed'
             $scope.content2 = 'content-closed'
 
             nxAnimation.sequence('app-start').keyframe({
                 duration: 400,
-                scale   : { x: 1.0, y: 1.0, z: 1.0 }
+                scale: { x: 1.0, y: 1.0, z: 1.0 }
             })
 
             nxAnimation.sequence('title-closed').keyframe({
                 duration: 400,
-                position : { x: 0, y: 0, z: 0 },
-                rotation : { x: 0, y: 0, z: 0 },
-                scale    : { x: 1.0, y: 1.0, z: 1.0 }
+                position: { x: 0, y: 0, z: 0 },
+                rotation: { x: 0, y: 0, z: 0 },
+                scale: { x: 1.0, y: 1.0, z: 1.0 }
             })
 
             nxAnimation.sequence('title-left').keyframe({
                 duration: 400,
-                position : { x : -180, y : 0,   z : 100 },
-                rotation : { x :  0,   y : 45,  z : 0  },
-                scale    : { x :  0.5, y : 0.5, z : 0.5 }
+                position: { x: -180, y: 0, z: 100 },
+                rotation: { x: 0, y: 45, z: 0 },
+                scale: { x: 0.5, y: 0.5, z: 0.5 }
             })
 
             nxAnimation.sequence('title-right').keyframe({
                 duration: 400,
-                position : { x: 180, y: 0, z: 100 },
-                rotation : { x:0, y: -45, z:0 },
-                scale    : { x: 0.5, y: 0.5, z: 0.5 }
+                position: { x: 180, y: 0, z: 100 },
+                rotation: { x: 0, y: -45, z: 0 },
+                scale: { x: 0.5, y: 0.5, z: 0.5 }
             })
 
             nxAnimation.sequence('title-top').keyframe({
                 duration: 400,
-                position : { x: 0,   y:-200, z: 0 },
-                rotation : { x: -20,   y: 0, z: 0 },
-                scale    : { x: 0.3, y: 0.3, z: 0.3 }
+                position: { x: 0, y: -200, z: 0 },
+                rotation: { x: -20, y: 0, z: 0 },
+                scale: { x: 0.3, y: 0.3, z: 0.3 }
             })
 
             nxAnimation.sequence('menu-open').keyframe({
-                duration : 400,
-                position : { x: 0, y: 160, z: 100 },
-                rotation : { x: 45, y: 0, z: 0 },
-                scale    : { x: 1, y: 1, z: 1 }
+                duration: 400,
+                position: { x: 0, y: 160, z: 100 },
+                rotation: { x: 45, y: 0, z: 0 },
+                scale: { x: 1, y: 1, z: 1 }
             })
 
             nxAnimation.sequence('menu-closed').keyframe({
                 duration: 400,
-                position : { x: 0, y: 0, z: 0 },
-                rotation : { x: 0, y: 0, z: 0 },
-                scale    : { x: 0, y: 0, z: 0 }
+                position: { x: 0, y: 0, z: 0 },
+                rotation: { x: 0, y: 0, z: 0 },
+                scale: { x: 0, y: 0, z: 0 }
             })
 
             nxAnimation.sequence('content-closed').keyframe({
                 duration: 400,
-                position : { x:0,  y: 0, z: 5000 },
-                rotation : { x: 0, y: 0, z: 0 },
-                scale    : { x: 0, y: 0, z: 0 }
+                position: { x: 0, y: 0, z: 5000 },
+                rotation: { x: 0, y: 0, z: 0 },
+                scale: { x: 0, y: 0, z: 0 }
             })
 
             nxAnimation.sequence('content-left').keyframe({
                 duration: 400,
-                position : { x: -300, y: 0,  z: 0},
-                rotation : { x: 0,    y: 25, z: 0 },
-                scale    : { x: 1,    y: 1,  z: 1 }
+                position: { x: -300, y: 0, z: 0 },
+                rotation: { x: 0, y: 25, z: 0 },
+                scale: { x: 1, y: 1, z: 1 }
             })
 
             nxAnimation.sequence('content-right').keyframe({
-                duration : 400,
-                position : { x:  300, y:  0,  z: 0 },
-                rotation : { x:  0,   y: -25, z: 0 },
-                scale    : { x:  1,   y:  1,  z: 1 }
+                duration: 400,
+                position: { x: 300, y: 0, z: 0 },
+                rotation: { x: 0, y: -25, z: 0 },
+                scale: { x: 1, y: 1, z: 1 }
             })
 
             nxAnimation.sequence('content-bottom').keyframe({
-                duration : 400,
-                position : { x:  0,   y: 0, z: 0 },
-                rotation : { x:  0,   y: 0, z: 0 },
-                scale    : { x:  1,   y: 1, z: 1 }
+                duration: 400,
+                position: { x: 0, y: 0, z: 0 },
+                rotation: { x: 0, y: 0, z: 0 },
+                scale: { x: 1, y: 1, z: 1 }
             })
 
             $scope.open = function () {
@@ -126,11 +129,11 @@
                 }
                 $scope.state0()
             }
-  
+
             $scope.state0 = function () {
                 console.log('state0')
-                $scope.title    = 'title-closed'
-                $scope.menu     = 'menu-closed'
+                $scope.title = 'title-closed'
+                $scope.menu = 'menu-closed'
                 $scope.content0 = 'content-closed'
                 $scope.content1 = 'content-closed'
                 $scope.content2 = 'content-closed'
@@ -138,8 +141,8 @@
 
             $scope.state1 = function () {
                 console.log('state1')
-                $scope.title    = 'title-left'
-                $scope.menu     = 'menu-open'
+                $scope.title = 'title-left'
+                $scope.menu = 'menu-open'
                 $scope.content0 = 'content-right'
                 $scope.content1 = 'content-closed'
                 $scope.content2 = 'content-closed'
@@ -147,16 +150,16 @@
 
             $scope.state2 = function () {
                 console.log('state2')
-                $scope.title    = 'title-right'
-                $scope.menu     = 'menu-open'
+                $scope.title = 'title-right'
+                $scope.menu = 'menu-open'
                 $scope.content0 = 'content-closed'
                 $scope.content1 = 'content-left'
                 $scope.content2 = 'content-closed'
             }
             $scope.state3 = function () {
                 console.log('state3')
-                $scope.title    = 'title-top'
-                $scope.menu     = 'menu-open'
+                $scope.title = 'title-top'
+                $scope.menu = 'menu-open'
                 $scope.content0 = 'content-closed'
                 $scope.content1 = 'content-closed'
                 $scope.content2 = 'content-bottom'
@@ -173,7 +176,7 @@
 
     <div ng-controller="controller">
 
-        
+
         <nx-transform animation="{{app}}" scale="{x:0.0, y:0.0, z:0.0}">
             <nx-transform animation="{{title}}">
                 <nx-transform ng-if="title != 'title-closed'" position="{x:5300}" rotation="{y: 90}" scale="{x:100, y:100, z:100}">
@@ -208,22 +211,20 @@
             <nx-transform animation="{{content2}}" position="{y: -10000}">
 
                 <nx-transform rotation="{x: 25}">
-                    
                     <img src="images/threejs.jpg" />
-                    
                 </nx-transform>
             </nx-transform>
-            
-           <nx-transform ng-if="menu=='menu-open'" animation="{{menu}}" position="{y:10000}">
-               <div>
-                   <a href="#"><div ng-click="state1()" class="menu-button"></div></a>
-                   <a href="#"><div ng-click="state2()" class="menu-button"></div></a>
-                   <a href="#"><div ng-click="state3()" class="menu-button"></div></a>
-               </div>
+
+            <nx-transform ng-if="menu=='menu-open'" animation="{{menu}}" position="{y:10000}">
+                <div>
+                    <a href="#"><div ng-click="state1()" class="menu-button"></div></a>
+                    <a href="#"><div ng-click="state2()" class="menu-button"></div></a>
+                    <a href="#"><div ng-click="state3()" class="menu-button"></div></a>
+                </div>
             </nx-transform>
 
         </nx-transform>
-        
+
     </div>
 
 </body>
