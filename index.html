@@ -1,74 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
     <style>
         body {
-
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
         }
+        .ng-enter        { transition: 0.75s; opacity: 0; }
+        .ng-enter-active { opacity: 1; }
+        .ng-leave        { transition: 0.75s;  }
+        .ng-leave-active { opacity: 0; }
     </style>
-    
+
     <script src="script/angular.min.js"></script>
-    
+
+    <script src="script/angular-animate.min.js"></script>
+
     <script src="script/three.min.js"></script>
-    
+
     <script src="script/three-css3d.min.js"></script>
-    
+
     <script src="script/angular.nx-transform.js"></script>
-    
+
     <script>
 
-        var app = angular.module('app', ['nxTransform'])
+        var app = angular.module('app', ['nxTransform', 'ngAnimate'])
 
-        app.controller('applicationCtrl', function ($scope, $interval) {
+        app.controller('applicationCtrl', function ($scope) {
 
-            $scope.value0  = 0
+            $scope.value0 = 0
 
-            $scope.value1  = 0
+            $scope.value1 = 0
 
-            $interval(function () {
+            $scope.flag = true
 
-                $scope.value0 += 0.1
+            $scope.toggle = function () {
 
-                $scope.value1 = Math.sin(($scope.value0 * 10) * Math.PI / 180) * 25
-
-            }, 1)
+                $scope.flag = !$scope.flag
+            }
         })
 
     </script>
 
 </head>
 
-    <body ng-app="app">
 
-        <div ng-controller="applicationCtrl">
 
-            <nx-transform rotation="{z:{{value1}}}">
+<body>
 
-                <nx-transform position="{y:-100}">
+    <div style="width:600px; height:600px;" ng-controller="applicationCtrl">
 
-                    <h1>nx-transform</h1>
+        <nx-transform rotation="{z:{{value1}}}">
 
-                </nx-transform>
+            <nx-transform position="{y:-100}">
 
-                <nx-transform position="{x:50, y:0}" rotation="{y:{{value0 * 5}}}">
+                <button ng-click="toggle()" style="z-index:10000">toggle</button>
 
-                    <img src="http://vojtajina.github.io/html5la/2012-05-11-brighton/images/AngularShieldLogo.png" />
-
-                </nx-transform>
-
-                <nx-transform position="{y:100}">
-
-                    <h3>angular + threejs + css</h3>
-
-                </nx-transform>
+                <h1>nx-transform</h1>
 
             </nx-transform>
 
-        </div>
+            <nx-transform class="foo" ng-if="flag" position="{x:50, y:0}" rotation="{y:{{value0 * 5}}}">
 
-    </body>
+                <img src="http://vojtajina.github.io/html5la/2012-05-11-brighton/images/AngularShieldLogo.png" />
+
+            </nx-transform>
+
+            <nx-transform position="{y:100}">
+
+                <h3>angular + threejs + css</h3>
+
+            </nx-transform>
+
+        </nx-transform>
+
+    </div>
+
+</body>
 
 </html>
