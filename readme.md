@@ -2,6 +2,8 @@
 
 A binding between angularjs + threejs. Enabling declarative 3D layouts in the browser.
 
+demo: http://sinclairzx81.github.io/nx-transform/
+
 ```html
 
     <div ng-controller="applicationCtrl">
