@@ -20,13 +20,13 @@
 
     <script src="script/three-css3d.min.js"></script>
 
-    <script src="script/angular.nx-transform.js"></script>
+    <script src="script/angular-transform.js"></script>
 
     <script>
 
         var app = angular.module('app', ['nxTransform', 'ngAnimate'])
 
-        app.controller('applicationCtrl', function ($scope) {
+        app.controller('applicationCtrl', function ($scope, $interval) {
 
             $scope.value0 = 0
 
@@ -38,6 +38,14 @@
 
                 $scope.flag = !$scope.flag
             }
+
+            $interval(function () {
+
+                $scope.value0 += 0.1
+
+                $scope.value1 = Math.sin(($scope.value0 * 10) * Math.PI / 180) * 25
+
+            }, 1)
         })
 
     </script>
